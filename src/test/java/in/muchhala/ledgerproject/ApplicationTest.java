@@ -32,12 +32,11 @@ public class ApplicationTest {
     public void mainShouldRunTheApplication() throws IOException {
         //Given
         String filePath = "src/test/resources/test-data-2.txt";
-        String expectedOutput = """
-                IDIDI Dale 1326 9
-                IDIDI Dale 3652 4
-                UON Shelly 15856 3
-                MBI Harry 9044 10
-                """.trim();
+        String expectedOutput =
+                "IDIDI Dale 1326 9\n" +
+                        "IDIDI Dale 3652 4\n" +
+                        "UON Shelly 15856 3\n" +
+                        "MBI Harry 9044 10";
 
         //When
         Application.main(new String[]{filePath});
