@@ -18,9 +18,9 @@ public class LedgerProcessor {
 
     private final Map<String, LoanAccount> loans;
 
-    private Loan loan;
-    private Payment payment;
-    private Balance balance;
+    private final Loan loan;
+    private final Payment payment;
+    private final Balance balance;
 
     LedgerProcessor(Loan loan, Payment payment, Balance balance) {
         this.loan = loan;
@@ -38,18 +38,21 @@ public class LedgerProcessor {
             inputStatements.forEach(statement -> {
                         String[] input = statement.split(SPACE);
                         switch (Command.fromText(input[0])) {
-                            case LOAN -> {
+                            case LOAN: {
                                 LoanAccount processedLoan = loan.process(input[1], input[2], Double.parseDouble(input[3]), Integer.parseInt(input[4]), Double.parseDouble(input[5]));
                                 loans.put(getKey(input[1], input[2]), processedLoan);
                             }
 
-                            case PAYMENT -> {
+                            case PAYMENT: {
                                 payment.process(loans.get(getKey(input[1], input[2])), Double.parseDouble(input[3]), Integer.parseInt(input[4]));
                             }
 
-                            case BALANCE -> {
+                            case BALANCE: {
                                 outputStatements.add(balance.process(loans.get(getKey(input[1], input[2])), Integer.parseInt(input[3])));
                             }
+
+                            default:
+                                break;
                         }
                     }
             );
