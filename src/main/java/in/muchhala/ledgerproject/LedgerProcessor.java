@@ -41,14 +41,17 @@ public class LedgerProcessor {
                             case LOAN: {
                                 LoanAccount processedLoan = loan.process(input[1], input[2], Double.parseDouble(input[3]), Integer.parseInt(input[4]), Double.parseDouble(input[5]));
                                 loans.put(getKey(input[1], input[2]), processedLoan);
+                                break;
                             }
 
                             case PAYMENT: {
                                 payment.process(loans.get(getKey(input[1], input[2])), Double.parseDouble(input[3]), Integer.parseInt(input[4]));
+                                break;
                             }
 
                             case BALANCE: {
                                 outputStatements.add(balance.process(loans.get(getKey(input[1], input[2])), Integer.parseInt(input[3])));
+                                break;
                             }
 
                             default:
